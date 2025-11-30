@@ -1,0 +1,16 @@
+# [Short description of changes - max 50 chars]
+
+# [Longer description of changes - wrap at 72 chars]
+#
+# Fixes #[issue number] or Closes #[issue number]
+#
+# --- COMMIT END ---
+# Type can be:
+#   feat:     (new feature)
+#   fix:      (bug fix)
+#   refactor: (refactoring production code)
+#   style:    (formatting, missing semi colons, etc; no code change)
+#   docs:     (changes to documentation)
+#   test:     (adding or refactoring tests; no production code change)
+#   chore:    (updating grunt tasks etc; no production code change)
+# ------------------

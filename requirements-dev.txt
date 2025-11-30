@@ -1,0 +1,18 @@
+# Development dependencies for AI Resume Builder
+
+# Code quality
+black==23.1.0
+flake8==6.0.0
+isort==5.12.0
+pre-commit==3.0.4
+
+# Testing
+pytest==7.2.1
+pytest-django==4.5.2
+pytest-cov==4.0.0
+factory-boy==3.2.1
+mock==5.0.1
+
+# Documentation
+sphinx==6.1.3
+sphinx-rtd-theme==1.2.0

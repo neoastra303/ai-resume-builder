@@ -1,0 +1,54 @@
+include README.md
+include LICENSE
+include CHANGELOG.md
+include CONTRIBUTING.md
+include CODE_OF_CONDUCT.md
+include SECURITY.md
+include requirements.txt
+include requirements-dev.txt
+include .env.example
+include .env.production.example
+include Makefile
+include pyproject.toml
+include setup.cfg
+include .pre-commit-config.yaml
+include .editorconfig
+include .dockerignore
+include Dockerfile
+include docker-compose.yml
+include docker-compose.prod.yml
+include docker-compose.docs.yml
+
+recursive-include resume_builder *.py
+recursive-include resume_builder *.html
+recursive-include resume_builder *.css
+recursive-include resume_builder *.js
+recursive-include resume_builder *.png
+recursive-include resume_builder *.jpg
+recursive-include resume_builder *.svg
+recursive-include resume_builder *.ico
+recursive-include resume_builder *.txt
+recursive-include resume_builder *.md
+
+recursive-include gdpr *.py
+recursive-include gdpr *.html
+recursive-include gdpr *.txt
+
+recursive-include two_factor *.py
+recursive-include two_factor *.html
+recursive-include two_factor *.txt
+
+recursive-include static *
+recursive-include templates *
+recursive-include docs *
+recursive-include .github *
+
+global-exclude *.pyc
+global-exclude __pycache__
+global-exclude .git
+global-exclude .gitignore
+global-exclude .env
+global-exclude db.sqlite3
+global-exclude .vscode
+global-exclude .idea
+global-exclude *.log
