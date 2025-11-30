@@ -5,6 +5,9 @@ A cutting-edge platform for creating professional resumes with AI-powered enhanc
 ![Python](https://img.shields.io/badge/Python-3.8%2B-blue)
 ![Django](https://img.shields.io/badge/Django-4.0%2B-green)
 ![License](https://img.shields.io/badge/License-MIT-blue)
+![GitHub stars](https://img.shields.io/github/stars/neoastra303/ai-resume-builder)
+![GitHub forks](https://img.shields.io/github/forks/neoastra303/ai-resume-builder)
+![GitHub issues](https://img.shields.io/github/issues/neoastra303/ai-resume-builder)
 
 ## Features
 
@@ -20,8 +23,8 @@ A cutting-edge platform for creating professional resumes with AI-powered enhanc
 
 ```bash
 # Clone the repository
-git clone <repository-url>
-cd resume_builder
+git clone https://github.com/neoastra303/ai-resume-builder.git
+cd ai-resume-builder
 
 # Create virtual environment
 python -m venv venv
@@ -72,4 +75,4 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 Your Name - [@neoastra303](https://twitter.com/neoastra303) - neozero3303@gmail.com
 
-Project Link: [https://github.com/neoastra303/resume_builder](https://github.com/neoastra303/resume_builder)
+Project Link: [https://github.com/neoastra303/ai-resume-builder](https://github.com/neoastra303/ai-resume-builder)
