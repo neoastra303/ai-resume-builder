@@ -1,0 +1,135 @@
+{% extends 'resumes/base.html' %}
+
+{% block title %}Privacy & Data Management - AI Resume Builder{% endblock %}
+
+{% block content %}
+<div class="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">
+  <div class="px-4 py-6 sm:px-0">
+    <div class="flex justify-between items-center mb-6">
+      <h1 class="text-2xl font-semibold text-gray-800">Privacy & Data Management</h1>
+    </div>
+
+    {% if messages %}
+      {% for message in messages %}
+        <div class="rounded-md bg-{{ message.tags }}-50 p-4 mb-4">
+          <div class="flex">
+            <div class="flex-shrink-0">
+              {% if message.tags == 'error' %}
+                <svg class="h-5 w-5 text-red-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                  <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd" />
+                </svg>
+              {% else %}
+                <svg class="h-5 w-5 text-green-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                  <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                </svg>
+              {% endif %}
+            </div>
+            <div class="ml-3">
+              <p class="text-sm leading-5 font-medium text-{{ message.tags }}-800">
+                {{ message }}
+              </p>
+            </div>
+          </div>
+        </div>
+      {% endfor %}
+    {% endif %}
+
+    <div class="grid grid-cols-1 gap-6 md:grid-cols-2">
+      <!-- Data Retention Information -->
+      <div class="bg-white overflow-hidden shadow rounded-lg">
+        <div class="px-4 py-5 sm:p-6">
+          <h3 class="text-lg leading-6 font-medium text-gray-900">Data Retention Policy</h3>
+          <div class="mt-4">
+            <p class="text-sm text-gray-500">
+              We retain your data for {{ retention_settings.retention_period_days }} days after account deletion or inactivity.
+              You will be notified {{ retention_settings.notify_before_deletion_days }} days before any automatic deletion.
+            </p>
+            <div class="mt-4">
+              <div class="flex items-center">
+                <input id="consent-data-processing" name="consent-data-processing" type="checkbox" class="h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded" {% if user.consent_to_data_processing %}checked{% endif %}>
+                <label for="consent-data-processing" class="ml-2 block text-sm text-gray-900">
+                  Consent to data processing for resume building
+                </label>
+              </div>
+              <div class="mt-2 flex items-center">
+                <input id="consent-marketing-emails" name="consent-marketing-emails" type="checkbox" class="h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded" {% if user.consent_to_marketing_emails %}checked{% endif %}>
+                <label for="consent-marketing-emails" class="ml-2 block text-sm text-gray-900">
+                  Consent to receive marketing emails
+                </label>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Request Data Deletion -->
+      <div class="bg-white overflow-hidden shadow rounded-lg">
+        <div class="px-4 py-5 sm:p-6">
+          <h3 class="text-lg leading-6 font-medium text-gray-900">Request Data Deletion</h3>
+          <div class="mt-4">
+            <p class="text-sm text-gray-500">
+              Request to permanently delete your account and all associated data.
+            </p>
+            <div class="mt-4">
+              <a href="{% url 'request_data_deletion' %}" class="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-red-600 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500">
+                Request Deletion
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Request Data Access -->
+      <div class="bg-white overflow-hidden shadow rounded-lg">
+        <div class="px-4 py-5 sm:p-6">
+          <h3 class="text-lg leading-6 font-medium text-gray-900">Request Data Access</h3>
+          <div class="mt-4">
+            <p class="text-sm text-gray-500">
+              Request a copy of all data we have stored about you.
+            </p>
+            <div class="mt-4">
+              <a href="{% url 'request_data_access' %}" class="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                Request Data Copy
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Active Deletion Requests -->
+      {% if deletion_requests %}
+      <div class="bg-white overflow-hidden shadow rounded-lg">
+        <div class="px-4 py-5 sm:p-6">
+          <h3 class="text-lg leading-6 font-medium text-gray-900">Active Deletion Requests</h3>
+          <div class="mt-4">
+            <ul class="divide-y divide-gray-200">
+              {% for request_obj in deletion_requests %}
+              <li class="py-4">
+                <div class="flex items-center justify-between">
+                  <div>
+                    <p class="text-sm font-medium text-gray-900">Request #{{ request_obj.id }}</p>
+                    <p class="text-sm text-gray-500">Status: {{ request_obj.get_status_display }}</p>
+                    <p class="text-xs text-gray-400">Requested: {{ request_obj.requested_at|date:"M d, Y H:i" }}</p>
+                    {% if request_obj.deletion_scheduled_at %}
+                      <p class="text-xs text-gray-400">Scheduled for deletion: {{ request_obj.deletion_scheduled_at|date:"M d, Y H:i" }}</p>
+                    {% endif %}
+                  </div>
+                  {% if request_obj.status == 'processing' %}
+                  <div>
+                    <a href="{% url 'cancel_data_deletion' request_obj.id %}" class="inline-flex items-center px-3 py-1 border border-gray-300 text-xs font-medium rounded-full text-red-700 bg-red-50 hover:bg-red-100">
+                      Cancel
+                    </a>
+                  </div>
+                  {% endif %}
+                </div>
+              </li>
+              {% endfor %}
+            </ul>
+          </div>
+        </div>
+      </div>
+      {% endif %}
+    </div>
+  </div>
+</div>
+{% endblock %}
